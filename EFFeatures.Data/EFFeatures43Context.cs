@@ -1,4 +1,4 @@
-﻿using EFFeatures.Models.Entities.Migration;
+﻿using EFFeatures.Models.Entities.EFFeatures43;
 using System.Data.Entity;
 
 namespace EFFeatures.Data

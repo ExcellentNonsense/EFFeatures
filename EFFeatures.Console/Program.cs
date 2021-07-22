@@ -1,8 +1,10 @@
 ﻿using EFFeatures.Data;
 using EFFeatures.Models.Entities;
+using EFFeatures.Models.Entities.EFFeatures5;
 using EFFeatures.Models.NonmodelObjects;
 using System.Configuration;
 using System.Data.Entity;
+using System.Data.Entity.Spatial;
 using System.Data.SqlClient;
 using System.Linq;
 
@@ -29,12 +31,20 @@ namespace EFFeatures.Console
 
             #region EF 4.3
 
-            //Database.SetInitializer(new DropCreateDatabaseAlways<EFFeatures43Context>());
+            //using (var ctx = new EFFeatures43Context())
+            //{
+            //    ctx.Angles.ToList();
+            //}
 
-            using (var ctx = new EFFeatures43Context())
-            {
-                ctx.Angles.ToList();
-            }
+            #endregion
+
+            #region EF 5
+
+            Database.SetInitializer(new EFFeaturesDbInitializerEFFeatures5Context());
+
+            var myLocation = DbGeography.FromText("POINT(-122.296623 47.640405)");
+
+            var closestHypermarket = GetClosestHypermarket(myLocation);
 
             #endregion
         }
@@ -191,6 +201,14 @@ namespace EFFeatures.Console
         private static void DemoCommandInterceptor()
         {
             var log = CommandInterceptor.GetLog();
+        }
+
+        private static Hypermarket GetClosestHypermarket(DbGeography location)
+        {
+            using (var ctx = new EFFeatures5Context())
+            {
+                return ctx.Hypermarkets.OrderBy(x => x.Location.Distance(location)).FirstOrDefault();
+            }
         }
     }
 }

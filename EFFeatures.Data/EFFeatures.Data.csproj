@@ -53,8 +53,10 @@
   <ItemGroup>
     <Compile Include="CommandInterceptor.cs" />
     <Compile Include="EFFeatures43Context.cs" />
+    <Compile Include="EFFeatures5Context.cs" />
     <Compile Include="EFFeaturesContext.cs" />
     <Compile Include="EFFeaturesDbInitializer.cs" />
+    <Compile Include="EFFeaturesDbInitializerEFFeatures5Context.cs" />
     <Compile Include="EFFeaturesDbInitializerNontableContext.cs" />
     <Compile Include="EFFeaturesNontableContext.cs" />
     <Compile Include="Migrations\202106162311202_InitialCreate.cs" />

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace EFFeatures.Models.Entities.Migration
+namespace EFFeatures.Models.Entities.EFFeatures43
 {
     public class Figure
     {
